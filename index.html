@@ -2,17 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    *{
-      color: aqua;
-      font-size: large;
-      align-items: center;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="When You Forget to Close the div - a programmer Flappy Bird style game.">
+  <title>When You Forget to Close the &lt;div&gt;</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p>hello world</p>
+  <main class="app-shell" aria-label="When You Forget to Close the div game">
+    <section class="editor-background" aria-hidden="true">
+      <div class="editor-panel editor-panel-left">
+        <div class="editor-tab">index.html</div>
+        <pre><code><span class="line-num">01</span> <span class="token-tag">&lt;main</span> <span class="token-attr">class</span>=<span class="token-string">"app"</span><span class="token-tag">&gt;</span>
+<span class="line-num">02</span>   <span class="token-tag">&lt;section&gt;</span>
+<span class="line-num">03</span>     <span class="token-tag">&lt;div&gt;</span>bug<span class="token-tag">&lt;/div&gt;</span>
+<span class="line-num">04</span>   <span class="token-tag">&lt;/section&gt;</span>
+<span class="line-num">05</span>   <span class="token-comment">// TODO: ship it</span>
+<span class="line-num">06</span>   <span class="token-keyword">const</span> score = <span class="token-number">1337</span>;
+<span class="line-num">07</span>   <span class="token-keyword">if</span> (build.ok) deploy();
+<span class="line-num">08</span> <span class="token-tag">&lt;/main&gt;</span></code></pre>
+      </div>
+      <div class="editor-panel editor-panel-right">
+        <div class="editor-tab">script.js</div>
+        <pre><code><span class="line-num">21</span> <span class="token-keyword">function</span> render() {
+<span class="line-num">22</span>   requestAnimationFrame(loop);
+<span class="line-num">23</span> }
+<span class="line-num">24</span> <span class="token-keyword">try</span> {
+<span class="line-num">25</span>   closeTag(<span class="token-string">"div"</span>);
+<span class="line-num">26</span> } <span class="token-keyword">catch</span> (error) {
+<span class="line-num">27</span>   console.error(error);
+<span class="line-num">28</span> }</code></pre>
+      </div>
+    </section>
+
+    <div class="code-rain" id="codeRain" aria-hidden="true"></div>
+    <div class="screen-flash" id="screenFlash" aria-hidden="true"></div>
+
+    <section class="game-card" id="gameCard">
+      <header class="hud" aria-live="polite">
+        <div class="hud-item"><span class="hud-label">Score</span><strong id="scoreValue">0</strong></div>
+        <div class="hud-item"><span class="hud-label">Best</span><strong id="bestValue">0</strong></div>
+        <div class="hud-item"><span class="hud-label">FPS</span><strong id="fpsValue">60</strong></div>
+      </header>
+
+      <div class="playfield" id="playfield" role="application" aria-label="Game area" tabindex="0">
+        <div class="scanlines" aria-hidden="true"></div>
+        <div class="bloom" aria-hidden="true"></div>
+        <div class="obstacle-layer" id="obstacleLayer" aria-hidden="true"></div>
+        <div class="egg-layer" id="eggLayer" aria-hidden="true"></div>
+        <div class="particle-layer" id="particleLayer" aria-hidden="true"></div>
+        <div class="crash-layer" id="crashLayer" aria-hidden="true"></div>
+
+        <div class="code-bird" id="codeBird" aria-label="Flying HTML source code">
+          <div><span class="code-punc">&lt;</span><span class="code-tag">img</span></div>
+          <div>&nbsp;<span class="code-attr">class</span><span class="code-punc">=</span><span class="code-string">"bird"</span></div>
+          <div>&nbsp;<span class="code-attr">alt</span><span class="code-punc">=</span><span class="code-string">"fly"</span></div>
+          <div>&nbsp;<span class="code-attr">width</span><span class="code-punc">=</span><span class="code-string">"20"</span></div>
+          <div>&nbsp;<span class="code-attr">height</span><span class="code-punc">=</span><span class="code-string">"20"</span></div>
+          <div>&nbsp;<span class="code-attr">data-html</span><span class="code-punc">=</span><span class="code-string">"true"</span></div>
+          <div><span class="code-punc">/&gt;</span></div>
+        </div>
+
+        <div class="ground" id="ground" aria-hidden="true">
+          <span>&lt;footer class="ground"&gt;</span>
+          <span>&lt;footer class="ground"&gt;</span>
+          <span>&lt;footer class="ground"&gt;</span>
+        </div>
+
+        <div class="overlay start-overlay is-visible" id="startOverlay">
+          <p class="eyebrow">runtime exception simulator</p>
+          <h1>When You Forget to Close the &lt;div&gt;</h1>
+          <p class="subtitle">Missing &lt;/div&gt;</p>
+          <button class="primary-button" id="startButton" type="button">Run Project</button>
+          <p class="hint">Click / Tap / Space to jump</p>
+        </div>
+
+        <div class="overlay game-over-overlay" id="gameOverOverlay" aria-live="assertive">
+          <p class="eyebrow error">build output</p>
+          <h2>你死了孙佳路，还玩吗？</h2>
+          <div class="error-box">
+            <strong>Error:</strong>
+            <span>Missing closing tag</span>
+            <code>&lt;/div&gt;</code>
+          </div>
+          <button class="primary-button danger-button" id="restartButton" type="button">Fix It</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
